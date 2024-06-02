@@ -6,13 +6,46 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
+    <form id="frm_login">
         <input type="text" id="userName" placeholder="Tên đăng nhập"/>
         <input type="password" id="password" placeholder="Mật khẩu" />
         <button type="submit">Đăng nhập</button>
+        <button type="button" id="test">Đăng nhập</button>
     </form>
     <script>
-
+        var frm = document.getElementById("frm_login");
+        frm.addEventListener("submit",function(){
+            let userName=document.getElementById("userName").value;
+            let password=document.getElementById("password").value;
+            let users=JSON.parse(localStorage.getItem("users"));
+            for(let i=0;i<users.length;i++)
+            {
+                let user=users[i];
+                if(user.userName==userName && user.password==password)
+                {
+                    alert("Đăng nhập thành công");
+                    return;
+                }
+            }
+            alert("Sai tài khoản hoặc mật khẩu");
+        })
+        var test = document.getElementById("test");
+        test.addEventListener("click",function(){
+            localStorage.removeItem("users");
+            let userName=document.getElementById("userName").value;
+            let password=document.getElementById("password").value;
+            let users=JSON.parse(localStorage.getItem("users"));
+            for(let i=0;i<users.length;i++)
+            {
+                let user=users[i];
+                if(user.userName==userName && user.password==password)
+                {
+                    alert("Đăng nhập thành công");
+                    return;
+                }
+            }
+            alert("Sai tài khoản hoặc mật khẩu");
+        })
     </script>
 </body>
 </html>
